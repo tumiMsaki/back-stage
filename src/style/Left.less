@@ -1,0 +1,82 @@
+.all{
+    position: absolute;
+    top: 0.6rem;
+    left: 0;
+    height: 90vh;
+    width: 100vw;
+    overflow: hidden;
+}
+.background{
+    position: absolute;
+    top: 0;
+    left: 100vw;
+    height: 100vh;
+    width: 100vw;
+    background-color: #fff;
+    transition: all .2s; 
+    }
+.background_show{
+    left: 0;
+}
+.content{
+    width: 70%;
+    height: 100%;
+    margin: 0 auto;
+}
+.header{
+    height: 0.6rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+.header_left{
+    display: flex;
+    justify-content: space-between;
+}
+.esc_btn{
+    cursor: pointer;
+    width: 0.35rem;
+    height: 0.32rem;
+    background: url('../img/esc.png') no-repeat center;
+    background-size: 80%;
+}
+.class{
+    margin-left: 0.2rem;
+    height: 0.32rem;
+    span{
+        display: block;
+        font-size: 0.33rem;
+        line-height: 0.3rem;
+    }
+}
+.stuNum{
+    height: 0.3rem;
+    margin-left: 0.15rem;
+    span{
+        display: block;
+        font-size: 0.16rem;
+        line-height: 0.3rem;
+    }
+}
+.send{
+    width: 1.2rem;
+    height:0.32rem;
+    border-radius: 0.1rem;
+    background-color: rgb(65, 154, 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .send_ico{
+        width: 0.4rem;
+        height: 0.32rem;
+        background: url('../img/send.png') no-repeat center;
+        background-size: 60%;
+    }
+    span{
+        display: block;
+        font-size: 0.18rem;
+        line-height: 0.3rem;
+        color: #fff;
+    }
+}

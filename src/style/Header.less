@@ -1,0 +1,100 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+.header{
+    background-color: #fff;
+    padding: 0.1rem 0;
+    height: 0.34rem;
+    box-shadow: 0 3px 5px rgb(241, 241, 241);
+}
+.content{
+    width: 72%;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    height: 0.34rem;
+    align-items: center;
+}
+.content_right{
+    display: flex;
+    justify-content: center;
+}
+.logo{
+    width: 2rem;
+    display: flex;
+    justify-content: space-between;
+    .logo_ico{
+        height: 100%;
+        width: 25%;
+        background: url('../img/logo.png') no-repeat center;
+        background-size: 80%;
+    }
+    .logo_word{
+        height: 100%;
+        width: 75%;
+        text-align: center;
+        span{
+            font-size: 0.2rem;
+            display: block;
+            line-height: 0.4rem;
+        }
+    }
+}
+.search{
+    background-color: rgb(241, 241, 241);
+    display: flex;
+    border-radius: 0.09rem;
+    left: 2.1rem;
+    height: 100%;
+    padding: 0.05rem;
+    box-sizing: border-box;
+    .search_val{
+        width: 2.4rem;
+        input{
+            background-color: rgb(241, 241, 241);
+            height: 0.3rem;
+            display: block;
+            width: 100%;
+            border-style: none;
+            font-size: 0.2rem;
+        }
+    }
+    .search_ico{
+        width: 0.4rem;
+        background: url('../img/search_ico.png') no-repeat center;
+        background-size: 70%;
+        cursor: pointer;
+    }
+}
+.content_left{
+    display: flex;
+    justify-content: center;
+}
+.userName{
+    width: 0.5rem;
+    height: 100%;
+    right: 2rem;
+    text-align: center;
+    span{
+        display: block;
+        line-height: 0.4rem;
+        font-size: 0.2rem;
+    }
+}
+.esc_btn{
+    width: 1rem;
+    right: 0.2rem;
+    text-align: center;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    span{
+        border: 1px solid rgb(241, 241, 241);
+        border-radius: 0.1rem;
+        box-sizing: border-box;
+        display: block;
+        font-size: 0.2rem;
+    }
+}
