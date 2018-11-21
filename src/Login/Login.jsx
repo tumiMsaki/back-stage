@@ -5,6 +5,67 @@ import { withRouter } from 'react-router-dom'
 
 
 class Login extends React.Component{
+    constructor(props){
+        super(props)
+        this.state={
+            userName:'',
+            psw:''
+        }
+    }
+
+    Login = () => {
+        // axios.post('',{
+
+        // }).then((data)=>{
+        // localStorage.token =
+        // }).catch(()=>{
+
+        // })
+        if(this.state.userName==='admin'&&this.state.pws==='123456'){
+            localStorage.user = 'admin'
+            console.log(localStorage)
+            this.props.history.push('/content')
+        }else{
+            alert('err')
+        }
+        
+    }
+
+    componentDidMount() {
+        window.addEventListener('keydown', this.keypress)
+     }
+
+
+    userChange = (e) =>{
+        this.setState({
+            userName:e.target.value
+        })
+    }
+
+    pwsChange = (e) =>{
+        this.setState({
+            pws:e.target.value
+        })
+    }
+
+    keypress = (e) =>{
+        if(e.keyCode===13){
+        // axios.post('',{
+        // }).then((data)=>{
+        // localStorage.token =
+        // }).catch(()=>{
+
+        // })
+        if(this.state.userName==='admin'&&this.state.pws==='123456'){
+            localStorage.user = 'admin'
+            window.removeEventListener('keydown',this.keypress);
+            this.props.history.push('/content')
+            }else{
+                alert('err')
+            }
+        }
+    }
+
     render(){
         return(
             <div className={login.body}>
@@ -19,17 +80,17 @@ class Login extends React.Component{
                     <div className={login.Login_user}>
                         <div className={login.Login_user_ico}></div>
                         <div className={login.Login_user_val}>
-                            <input type="text"></input>
+                            <input type="text" onChange={this.userChange.bind(this)}></input>
                         </div>
                     </div>
                     <div className={login.Login_pws}>
                         <div className={login.Login_pws_ico}></div>
                         <div className={login.Login_pws_val}>
-                            <input type="password" placeholder="密码"></input>
+                            <input type="password" placeholder="密码" onChange={this.pwsChange.bind(this)}></input>
                         </div>
                     </div>
                     <div className={login.Login_btn}>
-                    <span>登陆</span>
+                    <span onClick={this.Login.bind(this)}>登陆</span>
                     </div>
                 </div>
                 <div className={login.Login_footer}>
@@ -42,4 +103,4 @@ class Login extends React.Component{
 }
 
 
-export default Login;
+export default withRouter(Login);

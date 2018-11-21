@@ -4,11 +4,24 @@ import Content from './Content/Content'
 // import Footer from './Footer'
 
 class App extends React.Component{
+    constructor(props){
+        super(props)
+        this.state={
+            random:''
+        }
+    }
+
+    esc =()=>{
+        this.setState({
+            random:Math.random()
+        })
+    }
+
     render(){
         return(
             <div>
-                <Header></Header>
-                <Content></Content>
+                <Header esc={this.esc.bind(this)}></Header>
+                <Content data={this.state.random}></Content>
             </div>
         )
     }

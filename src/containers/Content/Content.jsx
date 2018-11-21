@@ -1,10 +1,12 @@
 import React from 'react';
 import content from '../../style/content.less'
 import Classify from './Classify'
+import { withRouter } from 'react-router-dom'
 class Content extends React.Component{
     constructor(){
         super()
         this.state={
+            random:'',
             data:[{
                 'class':'08011111',
                 'stuNum':'1'
@@ -19,7 +21,22 @@ class Content extends React.Component{
                 'stuNum':'4'
             }],
         }
+        
     }
+
+    componentWillMount() {
+        if(localStorage.length === 0){
+            this.props.history.push('/')
+            alert('请登陆')
+        }
+     }
+
+     componentWillReceiveProps(props){
+        if(localStorage.length === 0){
+            this.props.history.push('/')
+        }
+     }
+
     render(){
         return(
             <div>
@@ -37,4 +54,4 @@ class Content extends React.Component{
 }
 
 
-export default Content;
+export default withRouter(Content);

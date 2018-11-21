@@ -58,7 +58,7 @@ class Classify extends React.Component{
                 <div className={classify.class} onClick={this.left_show}><span>{this.props.data.class}班</span></div>
                 <div className={classify.stuNum}><span>(共有{this.props.data.stuNum}人)</span></div>
                 <div className={classify.btn}>
-                <span onClick={this.show}>推送</span>
+                <span onClick={this.show}>推送消息</span>
                 </div>
                 {this.state.show?<Popus data_false={this.data_false.bind(this)}></Popus>:null}
                 {this.state.left_show?<Left data={this.props.data} esc={this.esc.bind(this)}></Left>:null}

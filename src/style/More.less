@@ -4,13 +4,51 @@
     box-sizing: border-box;
 }
 .page{
-    height: 68.5%;
     border: 0.15rem solid rgb(244, 244, 244);
     // background: linear-gradient(#fb3 50%, #58a 50%);   
     // background-size: 100% 7.7%;  
 }
 .page_content{
-    height: 100%;
+    height: 5.2rem;
     background: linear-gradient(rgb(250,250,250) 50%, #fff 50%);   
     background-size: 100% 15.38%;  
+}
+.header{
+    text-align: center;
+    padding: 0 0.2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 0.4rem;
+    font-size: 0.21rem;
+    font-family: 微软雅黑;
+    input{
+        position: absolute;
+        clip: rect(0, 0, 0, 0);
+    }
+    input[type="checkbox"] + label::before {
+        content: "\a0";
+        display: inline-block;
+        vertical-align: 0.015rem;
+        width: 0.18rem;
+        height: 0.18rem;
+        margin-right: 0.08rem;
+        border-radius: 0.05rem;
+        border: 1px solid rgb(164, 164, 164);
+        // background-color: silver;
+        line-height: .65;  /*行高不加单位，子元素将继承数字乘以自身字体尺寸而非父元素行高*/
+    }
+    input[type="checkbox"]:checked + label::before {
+        content: "\2713";
+        background-color: rgb(56, 154, 255);
+        color: #fff;
+    }
+}
+.num,.name,.stuNum,.stuClass,.ico{
+    flex-grow: 1;
+    font-family: 微软雅黑;
+}
+.stuCol{
+    flex-grow: 2;
+    font-family: 微软雅黑;
 }
