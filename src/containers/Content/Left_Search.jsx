@@ -1,12 +1,14 @@
 import React from 'react';
 import left from '../../style/Left.less'
-import More from './More'
+import MoreSearch from './More_Search'
+import Popus from './Popup'
 class LeftSearch extends React.Component{
     constructor(props){
         super(props)
         this.state={
            show:false,
            data:[],
+           show_pupos:false,
         }
         this.false = this.false.bind(this)
     }
@@ -15,14 +17,27 @@ class LeftSearch extends React.Component{
         this.setState({
             show:!this.state.show
         })
-        setTimeout(()=>{
-            console.log(props.data)
-        },1000)
     }
     false = ()=>{
         this.props.esc();
         this.setState({
             show:!this.state.show
+        })
+    }
+
+    list = (e) =>{
+        sessionStorage.setItem('stuClass',e)
+    }
+
+    send = () =>{
+        this.setState({
+            show_pupos:!this.state.show_pupos
+        })
+    }
+
+    data_false =() =>{
+        this.setState({
+            show_pupos:!this.state.show_pupos
         })
     }
     render(){
@@ -40,11 +55,12 @@ class LeftSearch extends React.Component{
                             <div>
                                 <div className={left.send}>
                                     <div className={left.send_ico}></div>
-                                    <span>推送</span>
+                                    <span onClick={this.send.bind(this)}>推送</span>
                                 </div>
                             </div>
                     </div>
-                    <More></More>
+                    {this.state.show_pupos?<Popus data_false={this.data_false.bind(this)}></Popus>:null}
+                    <MoreSearch list={this.list.bind(this)}></MoreSearch>
                </div>
             </div>
             </div>

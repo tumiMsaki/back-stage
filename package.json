@@ -116,6 +116,5 @@
   "devDependencies": {
     "less": "^3.8.1",
     "less-loader": "^4.1.0"
-  },
-  "proxy":"https://wx.tumiv.com"
+  }
 }
