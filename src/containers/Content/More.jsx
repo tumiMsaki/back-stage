@@ -1,6 +1,7 @@
 import React from 'react'
 import more from '../../style/More.less'
 import Pag from './Pag'
+import Pagecomponent from './Pagination'
 class More extends React.Component{
     constructor(props){
         super(props)
@@ -37,6 +38,7 @@ class More extends React.Component{
                         <div className={more.ico}><span>小帮手是否绑定</span></div>
                     </div>
                         <Pag data={this.state.checkbox} list={this.list.bind(this)}></Pag>
+                        <Pagecomponent></Pagecomponent>
                     </div>
                 </div>
             </div>

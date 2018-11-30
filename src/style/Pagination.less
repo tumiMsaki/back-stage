@@ -1,0 +1,104 @@
+.all{
+    position: relative;
+    top: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    width: 6.6rem;
+    margin: 0 auto;
+    height: 0.5rem;
+    align-items: center;
+}
+.right{
+    width: 1.8rem;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.2rem;
+    align-items: center;
+    span{
+        display: block;
+    }
+    input{
+        border-radius: 0.1rem;
+        width: 0.4rem;
+        height: 0.4rem;
+        font-size: 0.3rem;
+        border:1px solid #b5b5b5;
+    }
+    .jump_to{
+        background-color: rgb(56, 154, 255);
+        color: #fff;
+        line-height: 0.4rem;
+        height: 0.4rem;
+        width: 0.7rem;
+        border-radius: 0.1rem;
+    }
+}
+.list{
+    user-select: none;
+    align-items: center;
+    width: 4.5rem;
+    display: flex;
+    justify-content: space-between;
+    bottom{
+        font-size: 0.2rem;
+    }
+}
+.page_container {
+    width: 3.5rem;
+    height: 0.4rem;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+}
+
+.page_container div {
+    border-radius: 0.1rem;
+    width: 0.4rem;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    height: 0.4rem;
+    line-height: 0.4rem;
+    font-size: 0.2rem;
+    // transition: 0.05s all;
+}
+
+/*当前页样式*/
+.activePage {
+    color: white !important;
+    background: rgb(56, 154, 255);
+    border-color: rgb(56, 154, 255) !important;
+}
+
+.ico_pre{
+    background: url('../img/pre.png') no-repeat center;
+    background-size: 100%;
+    display: block;
+    width: 0.4rem;
+    height: 0.4rem;
+}
+.ico_next{
+    background: url('../img/next.png') no-repeat center;
+    background-size: 100%;
+    display: block;
+    width: 0.4rem;
+    height: 0.4rem;
+}
+/*没有上一页和下一页时样式*/
+.nomore {
+    color: #b5b5b5 !important;
+    cursor: not-allowed !important;
+    .ico_pre{
+        background: url('../img/no_next.png') no-repeat center !important;
+        background-size: 100% 100% !important; 
+        display: block;
+        width: 0.4rem;
+        height: 0.4rem;
+    }
+    .ico_next{
+        background: url('../img/no_pre.png') no-repeat center !important;
+        background-size: 100% 100% !important;
+        display: block;
+        width: 0.4rem;
+        height: 0.4rem;
+    }
+}
