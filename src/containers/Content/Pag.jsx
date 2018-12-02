@@ -74,6 +74,8 @@ class Pag extends React.Component{
         this.setState({
             Allcheck:arr
         })
+
+        console.log(this.state.list_data)
     }
     render(){
         return(
@@ -82,7 +84,7 @@ class Pag extends React.Component{
             <div className={pag.list} key={i.xh}>
                    <input type="checkbox" id={i.xh} className={pag.num} onChange={(e)=>{this.check(e,index)}} checked={this.state.Allcheck[index]}></input>
                         <label htmlFor={i.xh}></label>
-                        <div className={pag.xh}>{index<10?'0'+index:index}</div>
+                        <div className={pag.xh}>{index<9?'0'+(index+1):(index+1)}</div>
                         <div className={pag.name}><span>{i.xm}</span></div>
                         <div className={pag.stuNum}><span>{i.xh}</span></div>
                         <div className={pag.stuClass}><span>{i.bj}</span></div>

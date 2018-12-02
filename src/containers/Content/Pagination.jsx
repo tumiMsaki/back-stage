@@ -6,12 +6,15 @@ class Pagecomponent extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            input_value:1,
             currentPage: 1, //当前页码
             groupCount: 3, //页码分组
             startPage: 1,  //分组开始页码
-            totalPage:8 //总页数
+            totalPage:14 //总页数
         }
         this.createPage = this.createPage.bind(this)
+        this.handleGetInputValue = this.handleGetInputValue.bind(this)
+        this.handlePost = this.handlePost.bind(this)
     }
 
     // componentDidMount() {
@@ -20,6 +23,13 @@ class Pagecomponent extends Component {
     //     })
     //     this.props.pageCallbackFn(this.state.currentPage)
     // }
+
+    handleGetInputValue = (event) => {
+        this.setState({
+          input_value : event.target.value,
+        })
+      };
+    
 
     createPage() {
         //const {totalPage} = this.props.pageConfig;
@@ -42,7 +52,7 @@ class Pagecomponent extends Component {
                 pageLength = groupCount + startPage;
             }
             //前面省略号(当当前页码比分组的页码大时显示省略号)
-            if (currentPage >= groupCount + 1 ) {
+            if (currentPage >= groupCount+1) {
                 pages.push(<div className="" key={-1}>···</div>)
             }
             //非第一页和最后一页显示
@@ -50,8 +60,8 @@ class Pagecomponent extends Component {
                 if (i <= totalPage - 1 && i > 1) {
                     pages.push(<div className={currentPage === i ? pagecomponent.activePage : null} key={i}
                                    onClick={this.pageClick.bind(this, i)}>{i}</div>)
-                }
-            }
+                    }
+                } 
             //后面省略号
             if (totalPage - startPage >= groupCount + 1) {
                 pages.push(<div className="" key={-2}>···</div>)
@@ -109,29 +119,38 @@ class Pagecomponent extends Component {
             return false
         }
         this.pageClick(currentPage)
+
     }
+
+
+    handlePost = () => {
+        const {input_value} = this.state;
+        this.pageClick(input_value)
+        console.log(this.state.currentPage)
+      }
+
     render() {
         const pageList = this.createPage();
         return (
             <div className={pagecomponent.all}>
             <div className={pagecomponent.list}>
-            <bottom className={this.state.currentPage === 1 ? pagecomponent.nomore : null} onClick={this.prePageHandeler.bind(this)}
+            <div className={this.state.currentPage === 1 ? pagecomponent.nomore : null} onClick={this.prePageHandeler.bind(this)}
                        key={0}>
-            <span className={pagecomponent.ico_pre}></span></bottom>
+            <span className={pagecomponent.ico_pre}></span></div>
             <div className={pagecomponent.page_container}>
                 {pageList}
             </div>
-            <bottom className={this.state.currentPage === this.state.totalPage ? pagecomponent.nomore : null}
+            <div className={this.state.currentPage === this.state.totalPage ? pagecomponent.nomore : null}
                        onClick={this.nextPageHandeler.bind(this)}
                        key={this.state.totalPage + 1}>
                        <span className={pagecomponent.ico_next}></span>
-                       </bottom>
+                       </div>
             </div>
             <div className={pagecomponent.right}>
                 <span>前往</span>
-                <input type="number"></input>
+                <input type="number" value={this.state.input_value} onChange={this.handleGetInputValue}></input>
                 <span>页</span>
-                <div className={pagecomponent.jump_to}>跳转</div>
+                <div className={pagecomponent.jump_to} onClick={this.handlePost.bind(this)}>跳转</div>
             </div>
             </div>
         )
