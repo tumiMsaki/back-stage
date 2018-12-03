@@ -117,5 +117,6 @@
   "devDependencies": {
     "less": "^3.8.1",
     "less-loader": "^4.1.0"
-  }
+  },
+  "proxy":"http://202.202.43.42/counselor/"
 }

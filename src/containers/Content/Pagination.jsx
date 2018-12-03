@@ -71,9 +71,7 @@ class Pagecomponent extends Component {
                            onClick={this.pageClick.bind(this, totalPage)}>{totalPage}</div>)
         }
         return pages;
-
     }
-
     //页码点击
     pageClick(currentPage) {
         const {groupCount} = this.state
@@ -98,8 +96,7 @@ class Pagecomponent extends Component {
         this.setState({
             currentPage
         })
-        //将当前页码返回父组件
-        // getCurrentPage(currentPage)
+        getCurrentPage(currentPage)
     }
 
     //上一页事件
@@ -126,7 +123,6 @@ class Pagecomponent extends Component {
     handlePost = () => {
         const {input_value} = this.state;
         this.pageClick(input_value)
-        console.log(this.state.currentPage)
       }
 
     render() {

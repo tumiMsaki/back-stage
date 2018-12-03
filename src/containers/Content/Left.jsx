@@ -9,13 +9,19 @@ class Left extends React.Component{
            show:false,
            data:[],
            show_pupos:false,
+           class:''
         }
         this.false = this.false.bind(this)
     }
 
+    componentWillMount(){
+        sessionStorage.setItem(this.state.class,'[]')
+    }
+
     componentWillReceiveProps(props){
         this.setState({
-            show:!this.state.show
+            show:!this.state.show,
+            class:props.class
         })
     }
     false = ()=>{
@@ -26,7 +32,8 @@ class Left extends React.Component{
     }
 
     list = (e) =>{
-        sessionStorage.setItem('stuClass',e)
+        sessionStorage.setItem(this.state.class,JSON.stringify(e))
+        console.log(JSON.parse(sessionStorage.getItem(this.state.class)))
     }
 
     send = () =>{
@@ -64,7 +71,7 @@ class Left extends React.Component{
                             </div>
                     </div>
                     {this.state.show_pupos?<Popus data_false={this.data_false.bind(this)}></Popus>:null}
-                    <More list={this.list.bind(this)}></More>
+                    <More list={this.list.bind(this)} class={this.state.class}></More>
                </div>
             </div>
             </div>

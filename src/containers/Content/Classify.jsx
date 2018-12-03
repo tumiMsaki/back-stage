@@ -28,12 +28,13 @@ class Classify extends React.Component{
     left_show = () =>{
         this.setState({
             left_show:!this.state.left_show,
+            data:1
         })
-        setTimeout(()=>{
-            this.setState({
-                data:1
-            })
-        },10)
+        // setTimeout(()=>{
+        //     this.setState({
+        //         data:1
+        //     })
+        // },10)
     }
 
     data_false =() =>{
@@ -47,6 +48,7 @@ class Classify extends React.Component{
             this.setState({
             left_show:!this.state.left_show
         })
+        sessionStorage.removeItem('stuClass')
         },300)
         
     }
@@ -61,7 +63,7 @@ class Classify extends React.Component{
                 <span onClick={this.show}>推送消息</span>
                 </div>
                 {this.state.show?<Popus data_false={this.data_false.bind(this)}></Popus>:null}
-                {this.state.left_show?<Left data={this.props.data} esc={this.esc.bind(this)}></Left>:null}
+                {this.state.left_show?<Left data={this.props.data} esc={this.esc.bind(this)} class={this.props.data.class}></Left>:null}
             </div>
         )
     }

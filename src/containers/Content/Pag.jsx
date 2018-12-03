@@ -1,6 +1,7 @@
 import React from 'react'
 import pag from '../../style/Pag.less'
 import list from './stu.json'
+import list2 from './stu2.json'
 class Pag extends React.Component{
     constructor(props){
         super(props)
@@ -12,49 +13,81 @@ class Pag extends React.Component{
         }
     }
 
-    componentWillReceiveProps(props){
-        let arr=[],
-        listArr =[]
-        if(props.data){    
-            for(let i=0;i<this.state.Allcheck.length;i++){
-                arr.push(true)
-                listArr.push(list[i].xh)
-            }
-            this.setState({
-                Allcheck:arr
-            },() =>{
+
+    componentWillUpdate(){
+        var arr=[]
+            for(let i = 0;i<this.state.data.length;i++){
+                    if(JSON.parse(sessionStorage.getItem(this.props.class)).indexOf(this.state.data[i].xh) === -1){
+                        arr.push(false);
+                    }else{
+                        arr.push(true)
+                    }
+                }
                 this.setState({
-                    list_data:listArr
-                },() => {
-                    this.props.list(this.state.list_data)
+                    Allcheck:arr
+                },()=>{
+                    console.log(this.state.Allcheck)
                 })
+    }
+
+    componentWillReceiveProps(props){
+        // let arr=[],
+        // listArr =[]
+        // if(props.data){    
+        //     for(let i=0;i<this.state.Allcheck.length;i++){
+        //         arr.push(true)
+        //         listArr.push(list[i].xh)
+        //     }
+        //     this.setState({
+        //         Allcheck:arr
+        //     },() =>{
+        //         this.setState({
+        //             list_data:listArr
+        //         },() => {
+        //             this.props.list(this.state.list_data)
+        //         })
+        //     })
+        // }else{
+        //     for(let i=0;i<this.state.Allcheck.length;i++){
+        //         arr.push(false)
+        //     }
+        //     this.setState({
+        //         Allcheck:arr,
+        //         list_data:[]
+        //     },() => {
+        //         this.props.list(this.state.list_data)
+        //     })
+        // }
+        if(props.page === 2){
+            this.setState({
+                data:list2
             })
         }else{
-            for(let i=0;i<this.state.Allcheck.length;i++){
-                arr.push(false)
-            }
             this.setState({
-                Allcheck:arr,
-                list_data:[]
-            },() => {
-                this.props.list(this.state.list_data)
+                data:list
             })
         }
     }
 
-    componentWillMount(){
-        var arr = [];
-        for(let i = 0;i < list.length;i++){
-            arr.push(false)
-        }
-        this.setState({
-            Allcheck:arr
-        })
-    }
+    // componentWillMount(){
+    //     var arr=[]
+    //     for(let i = 0;i<this.state.data.length;i++){
+    //         if(JSON.parse(sessionStorage.getItem('stuClass')).indexOf(this.state.data[i].id) === -1){
+    //             arr.push(false);
+    //         }else{
+    //             arr.push(true)
+    //         }
+    //     }
+    //     this.setState({
+    //         Allcheck:arr
+    //     },()=>{
+    //         console.log(this.state.Allcheck)
+    //     })
+    // }
 
     check = (e,index) =>{
         var list = this.state.list_data;
-        if(this.state.list_data.indexOf(e.target.id) === -1){
+        if(JSON.parse(sessionStorage.getItem(this.props.class)).indexOf(e.target.id) === -1){
             list.push(e.target.id)
             this.setState({
                 list_data:list
@@ -69,13 +102,11 @@ class Pag extends React.Component{
                 this.props.list(this.state.list_data)
             })
         }
-        let arr = this.state.Allcheck
+        var arr = this.state.Allcheck
         arr[index] = !arr[index]
         this.setState({
             Allcheck:arr
         })
-
-        console.log(this.state.list_data)
     }
     render(){
         return(
