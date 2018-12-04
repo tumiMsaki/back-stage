@@ -9,15 +9,18 @@ class Pag extends React.Component{
             data:list,
             list_data:[],
             checkbox:true,
-            Allcheck:[]
+            Allcheck:[false,false,false,false,false,false,false,false,false,false,false,false]
         }
     }
 
-
-    componentWillUpdate(){
-        var arr=[]
-            for(let i = 0;i<this.state.data.length;i++){
-                    if(JSON.parse(sessionStorage.getItem(this.props.class)).indexOf(this.state.data[i].xh) === -1){
+    componentWillReceiveProps(props){
+        if(props.page === 2){
+            this.setState({
+                data:list2
+            },()=>{
+                var arr=[]
+            for(let i = 0;i<12;i++){
+                    if(JSON.parse(sessionStorage.getItem('stunum')).indexOf(this.state.data[i].xh) === -1){
                         arr.push(false);
                     }else{
                         arr.push(true)
@@ -25,82 +28,36 @@ class Pag extends React.Component{
                 }
                 this.setState({
                     Allcheck:arr
-                },()=>{
-                    console.log(this.state.Allcheck)
                 })
-    }
-
-    componentWillReceiveProps(props){
-        // let arr=[],
-        // listArr =[]
-        // if(props.data){    
-        //     for(let i=0;i<this.state.Allcheck.length;i++){
-        //         arr.push(true)
-        //         listArr.push(list[i].xh)
-        //     }
-        //     this.setState({
-        //         Allcheck:arr
-        //     },() =>{
-        //         this.setState({
-        //             list_data:listArr
-        //         },() => {
-        //             this.props.list(this.state.list_data)
-        //         })
-        //     })
-        // }else{
-        //     for(let i=0;i<this.state.Allcheck.length;i++){
-        //         arr.push(false)
-        //     }
-        //     this.setState({
-        //         Allcheck:arr,
-        //         list_data:[]
-        //     },() => {
-        //         this.props.list(this.state.list_data)
-        //     })
-        // }
-        if(props.page === 2){
-            this.setState({
-                data:list2
             })
-        }else{
+        }else if(props.page === 1){
             this.setState({
                 data:list
+            },()=>{
+                var arr=[]
+            for(let i = 0;i<12;i++){
+                    if(JSON.parse(sessionStorage.getItem('stunum')).indexOf(this.state.data[i].xh) === -1){
+                        arr.push(false);
+                    }else{
+                        arr.push(true)
+                    }
+                }
+                this.setState({
+                    Allcheck:arr
+                })
             })
         }
     }
 
-    // componentWillMount(){
-    //     var arr=[]
-    //     for(let i = 0;i<this.state.data.length;i++){
-    //         if(JSON.parse(sessionStorage.getItem('stuClass')).indexOf(this.state.data[i].id) === -1){
-    //             arr.push(false);
-    //         }else{
-    //             arr.push(true)
-    //         }
-    //     }
-    //     this.setState({
-    //         Allcheck:arr
-    //     },()=>{
-    //         console.log(this.state.Allcheck)
-    //     })
-    // }
-
     check = (e,index) =>{
-        var list = this.state.list_data;
-        if(JSON.parse(sessionStorage.getItem(this.props.class)).indexOf(e.target.id) === -1){
-            list.push(e.target.id)
-            this.setState({
-                list_data:list
-            },() => {
-                this.props.list(this.state.list_data)
-            })
+        if(JSON.parse(sessionStorage.getItem('stunum')).indexOf(e.target.id) === -1){
+        var arr1 = JSON.parse(sessionStorage.getItem('stunum'))
+        arr1.push(e.target.id)
+        sessionStorage.setItem('stunum',JSON.stringify(arr1))  
         }else{
-            list.splice(this.state.list_data.indexOf(e.target.id),1)
-            this.setState({
-                list_data:list
-            },() =>{
-                this.props.list(this.state.list_data)
-            })
+            var arr2 = JSON.parse(sessionStorage.getItem('stunum'))
+            arr2.splice(arr2.indexOf(e.target.id),1)
+            sessionStorage.setItem('stunum',JSON.stringify(arr2))
         }
         var arr = this.state.Allcheck
         arr[index] = !arr[index]

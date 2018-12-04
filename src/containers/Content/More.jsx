@@ -20,9 +20,9 @@ class More extends React.Component{
         })
     }
 
-    list = (e) =>{
-        this.props.list(e)
-    }
+    // list = (e) =>{
+    //     this.props.list(e)
+    // }
 
     pageCallbackFn = (e) => {
         this.setState({
@@ -45,7 +45,7 @@ class More extends React.Component{
                         <div className={more.stuCol}><span>学院</span></div>
                         <div className={more.ico}><span>小帮手是否绑定</span></div>
                     </div>
-                        <Pag data={this.state.checkbox} list={this.list.bind(this)} page={this.state.page} class={this.state.class}></Pag>
+                        <Pag data={this.state.checkbox} page={this.state.page} class={this.state.class}></Pag>
                         <Pagination pageCallbackFn = {this.pageCallbackFn.bind(this)}></Pagination>
                     </div>
                 </div>

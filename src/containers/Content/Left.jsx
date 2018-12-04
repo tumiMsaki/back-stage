@@ -14,26 +14,24 @@ class Left extends React.Component{
         this.false = this.false.bind(this)
     }
 
-    componentWillMount(){
-        sessionStorage.setItem(this.state.class,'[]')
-    }
+    // componentDidMount(){
+    //     sessionStorage.setItem(this.state.class,'[]')
+    // }
 
     componentWillReceiveProps(props){
         this.setState({
             show:!this.state.show,
-            class:props.class
+        },() => {
+            sessionStorage.setItem("stunum",'[]')
         })
     }
     false = ()=>{
         this.props.esc();
         this.setState({
             show:!this.state.show
+        },()=>{
+            sessionStorage.setItem("stunum",'[]')
         })
-    }
-
-    list = (e) =>{
-        sessionStorage.setItem(this.state.class,JSON.stringify(e))
-        console.log(JSON.parse(sessionStorage.getItem(this.state.class)))
     }
 
     send = () =>{
@@ -71,7 +69,7 @@ class Left extends React.Component{
                             </div>
                     </div>
                     {this.state.show_pupos?<Popus data_false={this.data_false.bind(this)}></Popus>:null}
-                    <More list={this.list.bind(this)} class={this.state.class}></More>
+                    <More class={this.props.class}></More>
                </div>
             </div>
             </div>

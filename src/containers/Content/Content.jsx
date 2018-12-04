@@ -29,6 +29,7 @@ class Content extends React.Component{
             this.props.history.push('/')
             alert('请登陆')
         }
+        sessionStorage.setItem('stunum','[]')
      }
 
      componentWillReceiveProps(props){

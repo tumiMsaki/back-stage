@@ -122,7 +122,7 @@ class Pagecomponent extends Component {
 
     handlePost = () => {
         const {input_value} = this.state;
-        this.pageClick(input_value)
+        this.pageClick(parseInt(input_value))
       }
 
     render() {
@@ -144,7 +144,7 @@ class Pagecomponent extends Component {
             </div>
             <div className={pagecomponent.right}>
                 <span>前往</span>
-                <input type="number" value={this.state.input_value} onChange={this.handleGetInputValue}></input>
+                <input type="number" value={this.state.input_value} onChange={this.handleGetInputValue.bind(this)}></input>
                 <span>页</span>
                 <div className={pagecomponent.jump_to} onClick={this.handlePost.bind(this)}>跳转</div>
             </div>

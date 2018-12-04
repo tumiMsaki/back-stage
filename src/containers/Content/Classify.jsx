@@ -28,13 +28,13 @@ class Classify extends React.Component{
     left_show = () =>{
         this.setState({
             left_show:!this.state.left_show,
-            data:1
+            // data:1
         })
-        // setTimeout(()=>{
-        //     this.setState({
-        //         data:1
-        //     })
-        // },10)
+        setTimeout(()=>{
+            this.setState({
+                data:1
+            })
+        },10)
     }
 
     data_false =() =>{
