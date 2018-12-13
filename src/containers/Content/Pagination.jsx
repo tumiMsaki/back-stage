@@ -1,6 +1,7 @@
 
 import React, {Component} from 'react'
 import pagecomponent from '../../style/Pagination.less'
+import {findAll,findClassStu} from '../../apis/index'
 
 class Pagecomponent extends Component {
     constructor(props) {
@@ -10,19 +11,38 @@ class Pagecomponent extends Component {
             currentPage: 1, //当前页码
             groupCount: 3, //页码分组
             startPage: 1,  //分组开始页码
-            totalPage:14 //总页数
+            totalPage:0 //总页数
         }
         this.createPage = this.createPage.bind(this)
         this.handleGetInputValue = this.handleGetInputValue.bind(this)
         this.handlePost = this.handlePost.bind(this)
     }
 
-    // componentDidMount() {
-    //     this.setState({
-    //         totalPage: this.props.pageConfig.totalPage
-    //     })
-    //     this.props.pageCallbackFn(this.state.currentPage)
-    // }
+    componentWillMount(){
+        if(this.props.class.length<=5){
+            var data = `pagenum=1&grade=${this.props.class}`
+        findAll(data).then(resp => {
+            var pagenum = resp.data.data.pages
+            this.setState({
+                totalPage:pagenum
+            })
+        }).catch(err => {
+            alert(err)
+        })
+        }else{
+            var data = `pagenum=1&bj=${this.props.class}`
+            findClassStu(data).then(resp => {
+            var pagenum = resp.data.data.pages
+            this.setState({
+                totalPage:pagenum
+            })
+        }).catch(err => {
+            alert(err)
+        })
+        }
+        
+    }
+    
 
     handleGetInputValue = (event) => {
         this.setState({
@@ -67,7 +87,7 @@ class Pagecomponent extends Component {
                 pages.push(<div className="" key={-2}>···</div>)
             }
             //最后一页
-            pages.push(<div className={currentPage === totalPage ? pagecomponent.activePage : null} key={totalPage}
+            pages.push(<div className={currentPage === totalPage ? pagecomponent.activePage : null} key='100'
                            onClick={this.pageClick.bind(this, totalPage)}>{totalPage}</div>)
         }
         return pages;

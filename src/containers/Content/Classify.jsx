@@ -26,6 +26,20 @@ class Classify extends React.Component{
     }
 
     left_show = () =>{
+        var scrollToptimer = setInterval(function () {
+            console.log("定时循环回到顶部")
+            var top = document.body.scrollTop || document.documentElement.scrollTop;
+            var speed = top / 4;
+            if (document.body.scrollTop!=0) {
+                document.body.scrollTop -= speed;
+            }else {
+                document.documentElement.scrollTop -= speed;
+            }
+            if (top == 0) {
+                clearInterval(scrollToptimer);
+            }
+        }, 30)
+
         this.setState({
             left_show:!this.state.left_show,
             // data:1
@@ -57,13 +71,13 @@ class Classify extends React.Component{
     render(){
         return(
             <div className={[classify.content,this.state.animate&&classify.content_show].join(' ')}>
-                <div className={classify.class} onClick={this.left_show}><span>{this.props.data.class}班</span></div>
-                <div className={classify.stuNum}><span>(共有{this.props.data.stuNum}人)</span></div>
+                <div className={classify.class} onClick={this.left_show}><span>{this.props.data.grade}{this.props.data.grade.length<=5?'级':'班'}</span></div>
+                <div className={classify.stuNum}><span>(共有{this.props.data.num}人)</span></div>
                 <div className={classify.btn}>
                 <span onClick={this.show}>推送消息</span>
                 </div>
-                {this.state.show?<Popus data_false={this.data_false.bind(this)}></Popus>:null}
-                {this.state.left_show?<Left data={this.props.data} esc={this.esc.bind(this)} class={this.props.data.class}></Left>:null}
+                {this.state.show?<Popus data_false={this.data_false.bind(this)} class={this.props.data.grade}></Popus>:null}
+                {this.state.left_show?<Left class={this.props.data.grade} esc={this.esc.bind(this)} num={this.props.data.num}></Left>:null}
             </div>
         )
     }

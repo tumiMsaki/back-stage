@@ -1,25 +1,54 @@
 import React from 'react'
 import pag from '../../style/Pag.less'
-import list from './stu.json'
-import list2 from './stu2.json'
+import Loading from './Loading'
+import {findClassStu,findAll} from '../../apis/index'
+
 class Pag extends React.Component{
     constructor(props){
         super(props)
         this.state={
-            data:list,
+            data:[],
             list_data:[],
             checkbox:true,
-            Allcheck:[false,false,false,false,false,false,false,false,false,false,false,false]
+            Allcheck:[],
+            loading:''
         }
     }
 
     componentWillReceiveProps(props){
-        if(props.page === 2){
+        if(props.class.length <= 5){
+           var data = `pagenum=${props.page}&grade=${props.class}`
+            findAll(data).then(resp => {
+                this.setState({
+                    data:resp.data.data.list
+                },()=>{ 
+                    var arr=[]
+                for(let i = 0;i<this.state.data.length;i++){
+                        if(JSON.parse(sessionStorage.getItem('stunum')).indexOf(this.state.data[i].xh) === -1){
+                            arr.push(false);
+                        }else{
+                            arr.push(true)
+                        }
+                    }
+                    this.setState({
+                        Allcheck:arr,
+                        loading:2
+                    })
+                })
+            }).catch(err => {
+                alert(err)
+            }) 
             this.setState({
-                data:list2
+                loading:1
+            })
+        }else{
+            var data = `pagenum=${props.page}&bj=${props.class}`
+            findClassStu(data).then(resp => {
+            this.setState({
+                data:resp.data.data.list
             },()=>{
                 var arr=[]
-            for(let i = 0;i<12;i++){
+            for(let i = 0;i<this.state.data.length;i++){
                     if(JSON.parse(sessionStorage.getItem('stunum')).indexOf(this.state.data[i].xh) === -1){
                         arr.push(false);
                     }else{
@@ -27,24 +56,16 @@ class Pag extends React.Component{
                     }
                 }
                 this.setState({
-                    Allcheck:arr
+                    Allcheck:arr,
+                    loading:2
                 })
             })
-        }else if(props.page === 1){
+            })
+            .catch(err => {
+                alert(err)
+            })
             this.setState({
-                data:list
-            },()=>{
-                var arr=[]
-            for(let i = 0;i<12;i++){
-                    if(JSON.parse(sessionStorage.getItem('stunum')).indexOf(this.state.data[i].xh) === -1){
-                        arr.push(false);
-                    }else{
-                        arr.push(true)
-                    }
-                }
-                this.setState({
-                    Allcheck:arr
-                })
+                loading:1
             })
         }
     }
@@ -67,6 +88,8 @@ class Pag extends React.Component{
     }
     render(){
         return(
+            <div>
+            {this.state.loading === 1?<Loading></Loading>:
             <div className={pag.content}>
             {this.state.data.map((i,index) => 
             <div className={pag.list} key={i.xh}>
@@ -77,9 +100,11 @@ class Pag extends React.Component{
                         <div className={pag.stuNum}><span>{i.xh}</span></div>
                         <div className={pag.stuClass}><span>{i.bj}</span></div>
                         <div className={pag.stuCol}><span>{i.yxm}</span></div>
-                        <div className={pag.ico}><span className={i.ico?pag.log_true:pag.log_false}></span></div>
+                        <div className={pag.ico}><span className={i.xbs?pag.log_true:pag.log_false}></span></div>
             </div>
             )}
+            </div>
+        }
             </div>
         )
     }

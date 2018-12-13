@@ -1,7 +1,6 @@
 import React from 'react'
 import more from '../../style/More.less'
 import Pag from './Pag_search'
-import list from './stuSearch.json'
 class MoreSearch extends React.Component{
     constructor(props){
         super(props)
@@ -10,7 +9,6 @@ class MoreSearch extends React.Component{
             data:''
         }
     }
-
 
     checkbox = () =>{
         this.setState({
@@ -37,7 +35,7 @@ class MoreSearch extends React.Component{
                         <div className={more.stuCol}><span>学院</span></div>
                         <div className={more.ico}><span>小帮手是否绑定</span></div>
                     </div>
-                        <Pag data={this.state.checkbox} stu={list} list={this.list.bind(this)}></Pag>
+                        <Pag data={this.state.checkbox} stu={this.props.data} list={this.list.bind(this)}></Pag>
                     </div>
                 </div>
             </div>

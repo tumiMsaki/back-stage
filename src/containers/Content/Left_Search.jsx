@@ -7,21 +7,24 @@ class LeftSearch extends React.Component{
         super(props)
         this.state={
            show:false,
-           data:[],
            show_pupos:false,
+           data:''
         }
         this.false = this.false.bind(this)
     }
 
     componentWillReceiveProps(props){
         this.setState({
-            show:!this.state.show
+            show:!this.state.show,
+            data:props.list.data
         })
     }
     false = ()=>{
         this.props.esc();
         this.setState({
             show:!this.state.show
+        },()=>{
+            sessionStorage.setItem("stunum",'[]')
         })
     }
 
@@ -60,7 +63,7 @@ class LeftSearch extends React.Component{
                             </div>
                     </div>
                     {this.state.show_pupos?<Popus data_false={this.data_false.bind(this)}></Popus>:null}
-                    <MoreSearch list={this.list.bind(this)}></MoreSearch>
+                    <MoreSearch list={this.list.bind(this)} data={this.props.list.data}></MoreSearch>
                </div>
             </div>
             </div>

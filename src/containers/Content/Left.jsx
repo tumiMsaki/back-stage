@@ -14,10 +14,6 @@ class Left extends React.Component{
         this.false = this.false.bind(this)
     }
 
-    // componentDidMount(){
-    //     sessionStorage.setItem(this.state.class,'[]')
-    // }
-
     componentWillReceiveProps(props){
         this.setState({
             show:!this.state.show,
@@ -55,10 +51,10 @@ class Left extends React.Component{
                         <div className={left.header_left}>
                             <div className={left.esc_btn} onClick={this.false}></div>
                             <div className={left.class}>
-                                <span>{this.props.data.class}班</span>
+                                <span>{this.props.class}{this.props.class.length<=5?'级':'班'}</span>
                             </div>
                             <div className={left.stuNum}>
-                                <span>共有{this.props.data.stuNum}人</span>
+                                <span>共有{this.props.num}人</span>
                             </div>
                             </div>
                             <div>

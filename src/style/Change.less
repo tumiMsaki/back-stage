@@ -3,7 +3,7 @@
     background: rgb(241, 241, 241);
     content: "";
     position: absolute;
-    z-index: -1;
+    z-index: 2;
     height: 100vh;
     width: 100vw;
 }
@@ -11,6 +11,7 @@
     background-color: white;
     position: absolute;
     width: 5rem;
+    z-index: 3;
     height: 5rem;
     top: 50%;
     left: 50%;
@@ -35,7 +36,7 @@
         margin: 0.1rem 0;
     }
     .Login_log_word{
-        width: 78%;
+        width: 75%;
         margin: 0.1rem 0;
         span{
             font-size: 0.3rem;
@@ -45,18 +46,30 @@
         }
     }
 }
+.title{
+    span{
+        display: block;
+        color: blue;
+        font-size: 0.15rem;
+    }
+}
+.teacher_name{
+    display: inline-block !important;
+    color: #000 !important;
+    font-size: 0.15rem;
+}
 .Login_user{
     height: 0.28rem;
     display: flex;
     border: 1px solid rgb(232, 232, 234);
-    margin-top: 0.1rem;
+    margin-top: 0.3rem;
     padding: 0.1rem 0.1rem 0.1rem 0.05rem;
     justify-content: space-between;
     border-radius: 0.12rem;
     .Login_user_ico{
         width: 12%;
         border-right: 1px solid rgb(232, 232, 234);
-        background: url('../img/user.png') no-repeat center;
+        background: url('../img/pws.png') no-repeat center;
         background-size: 60%;
     }
     .Login_user_val{

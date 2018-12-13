@@ -7,29 +7,22 @@ class Content extends React.Component{
         super()
         this.state={
             random:'',
-            data:[{
-                'class':'08011111',
-                'stuNum':'1'
-            },{
-                'class':'08011112',
-                'stuNum':'2'
-            },{
-                'class':'08011113',
-                'stuNum':'3'
-            },{
-                'class':'08011114',
-                'stuNum':'4'
-            }],
+            data:''
         }
         
     }
 
-    componentWillMount() {
-        if(localStorage.length === 0){
+    componentWillMount(){
+        if(!sessionStorage['teacher_name']){
             this.props.history.push('/')
             alert('请登陆')
         }
         sessionStorage.setItem('stunum','[]')
+        var arr = sessionStorage['content']
+        arr = JSON.parse(arr)
+        this.setState({
+            data:arr
+        })
      }
 
      componentWillReceiveProps(props){

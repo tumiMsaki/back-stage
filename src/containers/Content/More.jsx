@@ -1,7 +1,9 @@
 import React from 'react'
 import more from '../../style/More.less'
 import Pag from './Pag'
-import Pagination from './Pagination'
+import Pagecomponent from './Pagination'
+import {findAll} from '../../apis/index'
+
 class More extends React.Component{
     constructor(props){
         super(props)
@@ -19,10 +21,6 @@ class More extends React.Component{
             checkbox:!this.state.checkbox
         })
     }
-
-    // list = (e) =>{
-    //     this.props.list(e)
-    // }
 
     pageCallbackFn = (e) => {
         this.setState({
@@ -45,8 +43,8 @@ class More extends React.Component{
                         <div className={more.stuCol}><span>学院</span></div>
                         <div className={more.ico}><span>小帮手是否绑定</span></div>
                     </div>
-                        <Pag data={this.state.checkbox} page={this.state.page} class={this.state.class}></Pag>
-                        <Pagination pageCallbackFn = {this.pageCallbackFn.bind(this)}></Pagination>
+                        <Pag data={this.state.checkbox} page={this.state.page} class={this.props.class}></Pag>
+                        {this.state.page>=1?<Pagecomponent pageCallbackFn = {this.pageCallbackFn.bind(this)} class={this.props.class}></Pagecomponent>:null}
                     </div>
                 </div>
             </div>
