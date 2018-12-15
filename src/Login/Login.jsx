@@ -2,7 +2,7 @@ import React from 'react';
 import loginless from '../style/Login.less'
 import { withRouter } from 'react-router-dom'
 import Change from './Change'
-import { login} from '../apis/index'
+import { login } from '../apis/index'
 
 
 class Login extends React.Component{
@@ -16,7 +16,7 @@ class Login extends React.Component{
     }
 
     Login = () => {
-        var data = 'username=' + this.state.userName + '&' + 'password=' + this.state.pws;
+        let data = `username=${this.state.userName}&password=${this.state.pws}`;
         login(data).then(resp => {
             if(resp.data.status === 202){
                 this.setState({

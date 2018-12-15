@@ -30,7 +30,7 @@ class Pagecomponent extends Component {
             alert(err)
         })
         }else{
-            var data = `pagenum=1&bj=${this.props.class}`
+            let data = `pagenum=1&bj=${this.props.class}`
             findClassStu(data).then(resp => {
             var pagenum = resp.data.data.pages
             this.setState({

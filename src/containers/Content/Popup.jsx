@@ -24,7 +24,6 @@ class Popus extends React.Component{
         this.setState({
             mod:e.target.value
         })
-        console.log(this.state.mod)
     }
 
     send = () =>{
@@ -32,14 +31,14 @@ class Popus extends React.Component{
         if(this.state.mod === '1'){
             if(this.props.class){
                 if(this.props.class.length <= 5){
-                    var data = `grade=${this.props.class}&template=${sessionStorage['title']}&school=重庆邮电大学&time=${sessionStorage['time']}&content=${sessionStorage['ModContent']}&remark=remark`
+                    let data = `grade=${this.props.class}&template=${sessionStorage['title']}&school=重庆邮电大学&time=${sessionStorage['time']}&content=${sessionStorage['ModContent']}&remark=remark`
                     AllBySchoolMessage(data).then(resp => {
                         console.log(resp)
                     }).catch(err => {
                         alert(err)
                     })
                 }else{
-                    var data = `classnum=${this.props.class}&template=${sessionStorage['title']}&school=重庆邮电大学&time=${sessionStorage['time']}&content=${sessionStorage['ModContent']}&remark=remark`
+                    let data = `classnum=${this.props.class}&template=${sessionStorage['title']}&school=重庆邮电大学&time=${sessionStorage['time']}&content=${sessionStorage['ModContent']}&remark=remark`
                     ClassBySchoolMessage(data).then(resp => {
                         console.log(resp)
                     }).catch(err => {
@@ -47,7 +46,7 @@ class Popus extends React.Component{
                     })
                 }
             }else if(!this.props.class){
-                var data = `xh=${sessionStorage['stunum']}&template=${sessionStorage['title']}&school=重庆邮电大学&time=${sessionStorage['time']}&content=${sessionStorage['ModContent']}&remark=remark`
+                let data = `xh=${sessionStorage['stunum']}&template=${sessionStorage['title']}&school=重庆邮电大学&time=${sessionStorage['time']}&content=${sessionStorage['ModContent']}&remark=remark`
                 SchoolMessage(data).then(resp =>{
                     console.log(resp)
                 }).catch(err => {
@@ -57,14 +56,14 @@ class Popus extends React.Component{
         }else{
             if(this.props.class){
                 if(this.props.class.length <= 5){
-                    var data = `grade=${this.props.class}&template=${sessionStorage['title']}&time=${sessionStorage['time']}&content=${sessionStorage['ModContent']}&remark=remark`
+                    let data = `grade=${this.props.class}&template=${sessionStorage['title']}&time=${sessionStorage['time']}&content=${sessionStorage['ModContent']}&remark=remark`
                     AllByTutorMessage(data).then(resp => {
                         console.log(resp)
                     }).catch(err => {
                         alert(err)
                     })
                 }else if(this.props.class.length >=5 && this.props.class.length <= 10){
-                    var data = `classnum=${this.props.class}&template=${sessionStorage['title']}&time=${sessionStorage['time']}&content=${sessionStorage['ModContent']}&remark=remark`
+                    let data = `classnum=${this.props.class}&template=${sessionStorage['title']}&time=${sessionStorage['time']}&content=${sessionStorage['ModContent']}&remark=remark`
                     ClassByTutorMessage(data).then(resp => {
                         console.log(resp)
                     }).catch(err => {
@@ -72,7 +71,7 @@ class Popus extends React.Component{
                     })
                 }
             }else if(!this.props.class){
-                var data = `xh=${sessionStorage['stunum']}&template=${sessionStorage['title']}&time=${sessionStorage['time']}&content=${sessionStorage['ModContent']}&remark=remark`
+                let data = `xh=${sessionStorage['stunum']}&template=${sessionStorage['title']}&time=${sessionStorage['time']}&content=${sessionStorage['ModContent']}&remark=remark`
                 TutorMessage(data).then(resp => {
                     console.log(resp.status)
                 }).catch(err =>{

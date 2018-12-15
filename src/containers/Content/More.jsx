@@ -2,7 +2,6 @@ import React from 'react'
 import more from '../../style/More.less'
 import Pag from './Pag'
 import Pagecomponent from './Pagination'
-import {findAll} from '../../apis/index'
 
 class More extends React.Component{
     constructor(props){

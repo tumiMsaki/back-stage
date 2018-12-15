@@ -17,7 +17,7 @@ class Pag extends React.Component{
 
     componentWillReceiveProps(props){
         if(props.class.length <= 5){
-           var data = `pagenum=${props.page}&grade=${props.class}`
+            let data = `pagenum=${props.page}&grade=${props.class}`
             findAll(data).then(resp => {
                 this.setState({
                     data:resp.data.data.list
@@ -42,7 +42,7 @@ class Pag extends React.Component{
                 loading:1
             })
         }else{
-            var data = `pagenum=${props.page}&bj=${props.class}`
+            let data = `pagenum=${props.page}&bj=${props.class}`
             findClassStu(data).then(resp => {
             this.setState({
                 data:resp.data.data.list
